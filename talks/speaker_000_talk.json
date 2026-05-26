@@ -1,0 +1,14 @@
+{
+  "id": "speaker_000",
+  "nickname": "ThaiHN<br>(HN not DN)",
+  "role": "Engineer · AI Practitioner",
+  "avatar": "talks/speaker_000_avt.webp",
+  "talk": {
+    "title": "CLAUDE.md Goes Live: Testing the 65 → 94% Accuracy Claim",
+    "abstract": "Karpathy's 4 rules went viral. 82,000 stars. The claim: coding accuracy jumps from 65% to 94% with a single plain-text file. ThaiHN ran the actual experiment — real tasks, real metrics — and is here to show the raw results, what actually moved the needle, and how to squeeze even more out of it.",
+    "tags": ["Claude Code", "CLAUDE.md", "Experiment", "Productivity"],
+    "slot": "09:00",
+    "position": "Opening talk",
+    "source": "https://x.com/0xdepressionn/status/2055999112470839383"
+  }
+}

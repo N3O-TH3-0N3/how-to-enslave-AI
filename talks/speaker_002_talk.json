@@ -1,0 +1,14 @@
+{
+  "id": "speaker_002",
+  "nickname": "Speaker TBA",
+  "role": "Role · Background",
+  "avatar": null,
+  "tba": true,
+  "talk": {
+    "title": "Title to be announced",
+    "abstract": "Abstract coming soon. Stay tuned for more details about this session.",
+    "tags": ["TBA"],
+    "slot": "???",
+    "position": ""
+  }
+}

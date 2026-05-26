@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speakers — How to Enslave AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+US+Modern:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+  <style>
+    html { font-size: 24px; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --neon:  #00ff88;
+      --neon2: #00cfff;
+      --neon3: #ff00cc;
+      --neon4: #ffe000;
+      --dark:  #050510;
+    }
+
+    body {
+      font-family: 'Playwrite US Modern', cursive;
+      background: var(--dark);
+      color: #e0e0e0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Background ── */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: url('background.png') center/cover no-repeat;
+      z-index: 0;
+    }
+    .bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 5, 16, 0.64);
+    }
+
+    /* ── Scanlines ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent, transparent 2px,
+        rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px
+      );
+    }
+
+    /* ── Layout ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      margin-bottom: 48px;
+    }
+    .nav a {
+      color: var(--neon);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .nav a:hover { opacity: 1; }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    header h1 {
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--neon);
+      text-shadow:
+        0 0 6px #fff,
+        0 0 14px var(--neon),
+        0 0 32px var(--neon),
+        0 0 64px var(--neon);
+      animation: flicker 4s infinite alternate;
+    }
+    header p {
+      margin-top: 12px;
+      color: #666;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+    @keyframes flicker {
+      0%, 92% { opacity: 1; }
+      93%      { opacity: 0.3; }
+      94%      { opacity: 1; }
+      97%      { opacity: 0.15; }
+      100%     { opacity: 1; }
+    }
+
+    /* ── Speaker grid ── */
+    .speaker-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* ── Speaker card ── */
+    .card {
+      border-radius: 12px;
+      padding: 32px 28px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+    }
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 24px rgba(0,0,0,0.4), 0 0 1px var(--accent);
+    }
+
+    .card.c0 { --accent: var(--neon); }
+    .card.c1 { --accent: var(--neon2); }
+    .card.c2 { --accent: var(--neon3); }
+
+    /* Avatar */
+    .avatar-wrap {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 16px var(--accent);
+    }
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--accent);
+      opacity: 0.4;
+    }
+
+    /* Name & role */
+    .speaker-name {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px var(--accent);
+      margin-bottom: 4px;
+    }
+    .speaker-role {
+      font-size: 0.72rem;
+      color: #666;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    /* Talk */
+    .talk-label {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .talk-title {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #ddd;
+      margin-bottom: 14px;
+    }
+    .talk-desc {
+      font-size: 0.78rem;
+      line-height: 1.8;
+      color: #888;
+      margin-bottom: 20px;
+    }
+
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 99px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      opacity: 0.7;
+      text-transform: uppercase;
+    }
+
+    /* Slot badge */
+    .slot {
+      display: inline-block;
+      margin-top: 18px;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      color: #555;
+      text-transform: uppercase;
+    }
+    .slot span {
+      color: var(--accent);
+      opacity: 0.8;
+    }
+
+    /* TBA card */
+    .card.tba .speaker-name,
+    .card.tba .talk-title {
+      opacity: 0.3;
+    }
+    .card.tba .talk-desc {
+      opacity: 0.2;
+    }
+    .tba-badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      padding: 3px 10px;
+      border: 1px solid #444;
+      color: #444;
+      border-radius: 99px;
+      text-transform: uppercase;
+    }
+
+    /* Card entrance animation */
+    .card {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: card-in 0.5s forwards;
+    }
+    @keyframes card-in {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg"></div>
+
+  <div class="page">
+
+    <nav class="nav">
+      <a href="index.html">← Back to main</a>
+    </nav>
+
+    <header>
+      <h1>Speakers</h1>
+      <p>How to Enslave AI — 2026/06/06 · Tầng 19, Mỹ Đình Pearl</p>
+    </header>
+
+    <div class="speaker-grid" id="grid"></div>
+  </div>
+
+  <script>
+    const ACCENT_CLASSES = ['c0', 'c1', 'c2', 'c3', 'c4'];
+
+    function buildCard(data, index) {
+      const accent = ACCENT_CLASSES[index % ACCENT_CLASSES.length];
+      const isTba  = !!data.tba;
+      const talk   = data.talk || {};
+      const delay  = (index * 0.13 + 0.05).toFixed(2);
+
+      const avatarHTML = data.avatar
+        ? `<img src="${data.avatar}" alt="${data.nickname}" />`
+        : `<div class="avatar-placeholder">?</div>`;
+
+      const tagsHTML = (talk.tags || [])
+        .map(t => `<span class="tag">${t}</span>`)
+        .join('');
+
+      const slotHTML = talk.slot
+        ? `<div class="slot">Slot <span>${talk.slot}</span>${talk.position ? ' — ' + talk.position : ''}</div>`
+        : '';
+
+      return `
+        <div class="card ${accent}${isTba ? ' tba' : ''}" style="animation-delay:${delay}s">
+          ${isTba ? '<span class="tba-badge">TBA</span>' : ''}
+          <div class="avatar-wrap">${avatarHTML}</div>
+          <div class="speaker-name">${data.nickname || 'TBA'}</div>
+          <div class="speaker-role">${data.role || ''}</div>
+          <div class="talk-label">Talk</div>
+          <div class="talk-title">${talk.title || 'Title to be announced'}</div>
+          <div class="talk-desc">${talk.abstract || ''}</div>
+          <div class="tags">${tagsHTML}</div>
+          ${slotHTML}
+        </div>`;
+    }
+
+    async function loadSpeakers() {
+      const grid = document.getElementById('grid');
+      try {
+        const idx  = await fetch('talks/index.json').then(r => r.json());
+        const all  = await Promise.all(idx.speakers.map(p => fetch(p).then(r => r.json())));
+        grid.innerHTML = all.map((s, i) => buildCard(s, i)).join('');
+      } catch (e) {
+        grid.innerHTML = '<p style="color:#555;text-align:center">Failed to load speakers.</p>';
+      }
+    }
+
+    loadSpeakers();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "speakers": [
+    "talks/speaker_000_talk.json",
+    "talks/speaker_001_talk.json",
+    "talks/speaker_002_talk.json"
+  ]
+}
